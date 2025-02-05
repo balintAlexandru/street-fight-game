@@ -12,6 +12,8 @@ const dataGame = {
   countdown: document.querySelector(".countdown"),
   startGameLayout: document.querySelector(".start-game-layout"),
   startBtn: document.querySelector(".start-btn"),
+  countdownNumber: 3,
+  gameOn: false,
 };
 
 export default dataGame;

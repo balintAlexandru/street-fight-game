@@ -1,34 +1,18 @@
 import { heroPunchAnimation } from "./animations.js";
 import { heroMovement, healthBarMove } from "./movement.js";
 import { heroTouch } from "./mechanics.js";
-import dataGame from "./dataGame.js";
-const {
-  hero1,
-  backgroundSound,
-  switchSoundButton,
-  hero2,
-  healthBarHero1,
-  healthBarHero2,
-  progressBarHero1,
-  progressBarHero2,
-  countdown,
-  startGameLayout,
-  startBtn,
-  hero1Touch,
-  hero2Touch,
-} = dataGame;
 
-// const backgroundSound = document.querySelector(".my-audio");
-// const switchSoundButton = document.querySelector(".switch-sound");
-// const hero1 = document.querySelector(".hero1");
-// const hero2 = document.querySelector(".hero2");
-// const healthBarHero1 = document.querySelector(".health-bar-hero1");
-// const healthBarHero2 = document.querySelector(".health-bar-hero2");
-// const progressBarHero1 = document.querySelector(".progress-bar-hero1");
-// const progressBarHero2 = document.querySelector(".progress-bar-hero2");
-// const countdown = document.querySelector(".countdown");
-// const startGameLayout = document.querySelector(".start-game-layout");
-// const startBtn = document.querySelector(".start-btn");
+const backgroundSound = document.querySelector(".my-audio");
+const switchSoundButton = document.querySelector(".switch-sound");
+const hero1 = document.querySelector(".hero1");
+const hero2 = document.querySelector(".hero2");
+const healthBarHero1 = document.querySelector(".health-bar-hero1");
+const healthBarHero2 = document.querySelector(".health-bar-hero2");
+const progressBarHero1 = document.querySelector(".progress-bar-hero1");
+const progressBarHero2 = document.querySelector(".progress-bar-hero2");
+const countdown = document.querySelector(".countdown");
+const startGameLayout = document.querySelector(".start-game-layout");
+const startBtn = document.querySelector(".start-btn");
 
 hero1.style.left = "50px";
 hero2.style.left = "650px";
@@ -39,8 +23,8 @@ healthBarHero2.style.bottom = "270px";
 progressBarHero1.style.width = "116px";
 progressBarHero2.style.width = "116px";
 countdown.style.transform = "translate(-50%,-50%)";
-// let hero1Touch = false;
-// let hero2Touch = false;
+let hero1Touch = false;
+let hero2Touch = false;
 let countdownNumber = 3;
 let gameOn = false;
 
@@ -73,20 +57,17 @@ const hero2Kill = [
   "./images/hero2/kill2.png",
   "./images/hero2/kill3.png",
 ];
-
 const hero1Kill = [
   "./images/hero1/kill1.png",
   "./images/hero1/kill2.png",
   "./images/hero1/kill3.png",
 ];
-
 const hero1Kick = [
   "./images/hero1/kick1.png",
   "./images/hero1/kick2.png",
   "./images/hero1/kick3.png",
   "./images/hero1/frame_1.png",
 ];
-
 const hero2Kick = [
   "./images/hero2/kick1.png",
   "./images/hero2/kick2.png",
@@ -146,7 +127,7 @@ window.addEventListener("keydown", (event) => {
     if (parseInt(hero1.style.left) <= 680) {
       heroMovement("right", hero1, hero1Move);
       healthBarMove(healthBarHero1, "right", hero1);
-      heroTouch("right", "hero1");
+      hero1Touch = heroTouch("right", "hero1");
     }
   }
   if (
@@ -157,7 +138,7 @@ window.addEventListener("keydown", (event) => {
     if (parseInt(hero1.style.left) >= 50) {
       heroMovement("left", hero1, hero1Move);
       healthBarMove(healthBarHero1, "left", hero1);
-      heroTouch("left", "hero1");
+      hero1Touch = heroTouch("left", "hero1");
     }
   }
   if (
@@ -168,7 +149,7 @@ window.addEventListener("keydown", (event) => {
     if (parseInt(hero2.style.left) >= 50) {
       heroMovement("left", hero2, hero2Move);
       healthBarMove(healthBarHero2, "left", hero2);
-      heroTouch("right", "hero2");
+      hero2Touch = heroTouch("right", "hero2");
     }
   }
   if (
@@ -179,7 +160,7 @@ window.addEventListener("keydown", (event) => {
     if (parseInt(hero2.style.left) <= 680) {
       heroMovement("right", hero2, hero2Move);
       healthBarMove(healthBarHero2, "right", hero2);
-      heroTouch("left", "hero2");
+      hero2Touch = heroTouch("left", "hero2");
     }
   }
   if (
@@ -187,6 +168,7 @@ window.addEventListener("keydown", (event) => {
     parseInt(progressBarHero1.style.width) !== 0 &&
     gameOn
   ) {
+    console.log(hero1Touch, hero2Touch)
     heroPunchAnimation(hero1, hero1Punch);
     if (hero1Touch === true || hero2Touch === true) {
       healthBarHero2.style.zIndex = "2";
